@@ -1,13 +1,19 @@
 name: Android CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+      - feature/*
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - uses: malinskiy/action-android/install-sdk@release/0.0.5
-    - name: Build with Gradle
-      run: ./gradlew build
+      - uses: actions/checkout@v2
+      - uses: malinskiy/action-android/install-sdk@release/0.0.5
+      - name: Lint Check
+        run: ./gradlew lint
+      - name: Unit tests
+        run: ./gradlew test --stacktrace
+      - name: Build with Gradle
+        run: ./gradlew build
