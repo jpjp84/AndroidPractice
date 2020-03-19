@@ -25,3 +25,15 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    androidx = [
+            appCompat       : '1.1.0',
+            core            : '1.2.0',
+            lifecycle       : '2.2.0',
+            constraintLayout: '1.1.3',
+            fragmentVersion : '1.2.3',
+            fragmentKtx     : '1.3.0-alpha02'
+    ]
+    daggerVersion = "2.23.2"
+}
