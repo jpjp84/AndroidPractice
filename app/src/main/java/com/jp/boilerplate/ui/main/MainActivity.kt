@@ -1,7 +1,8 @@
-package com.jp.boilerplate
+package com.jp.boilerplate.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.jp.boilerplate.R
 
 class MainActivity : AppCompatActivity() {
 
