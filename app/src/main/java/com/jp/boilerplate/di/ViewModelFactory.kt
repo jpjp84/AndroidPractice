@@ -27,6 +27,7 @@ import kotlin.reflect.KClass
 
 /**
  * ViewModelFactory which uses Dagger to create the instances.
+ * https://github.com/android/architecture-samples/blob/dagger-android/app/src/main/java/com/example/android/architecture/blueprints/todoapp/di/ViewModelFactory.kt
  */
 class ViewModelFactory @Inject constructor(
     private val creators: @JvmSuppressWildcards Map<Class<out ViewModel>, Provider<ViewModel>>
