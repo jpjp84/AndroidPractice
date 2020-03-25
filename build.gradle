@@ -37,5 +37,10 @@ ext {
             activityVersion : '1.1.0',
             activityKtx     : '1.1.0'
     ]
-    daggerVersion = "2.23.2"
+    daggerVersion = '2.23.2'
+    retrofitVersion = '2.8.0'
+    rx = [
+            kotlin : '3.0.0',
+            android: '3.0.0'
+    ]
 }
