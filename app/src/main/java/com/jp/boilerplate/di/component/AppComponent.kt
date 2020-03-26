@@ -3,6 +3,7 @@ package com.jp.boilerplate.di.component
 import android.content.Context
 import com.jp.boilerplate.AndroidBoilerplate
 import com.jp.boilerplate.di.module.AppModule
+import com.jp.boilerplate.di.module.DataModule
 import com.jp.boilerplate.di.module.MainModule
 import dagger.BindsInstance
 import dagger.Component
@@ -15,6 +16,7 @@ import javax.inject.Singleton
     modules = [
         AppModule::class,
         AndroidSupportInjectionModule::class,
+        DataModule::class,
         MainModule::class
     ]
 )
