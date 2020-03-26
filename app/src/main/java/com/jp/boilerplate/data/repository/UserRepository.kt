@@ -5,7 +5,7 @@ import io.reactivex.Flowable
 
 interface UserRepository {
 
-    fun getName(): Flowable<User>
+    fun getUser(): Flowable<User>
 
     fun getAge(): Int
 

@@ -1,5 +1,6 @@
 package com.jp.boilerplate.di.module
 
+import android.content.Context
 import com.jp.boilerplate.data.UserRepositoryImpl
 import com.jp.boilerplate.data.datasource.UserDataSource
 import com.jp.boilerplate.data.datasource.local.UserLocalDataSource
@@ -17,8 +18,8 @@ object DataModule {
     @Singleton
     @Provides
     @AppModule.LocalDataSource
-    fun bindLocalUserDataSource(): UserDataSource {
-        return UserLocalDataSource()
+    fun bindLocalUserDataSource(context: Context): UserDataSource {
+        return UserLocalDataSource(context)
     }
 
     @JvmStatic

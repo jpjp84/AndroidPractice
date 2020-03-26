@@ -13,7 +13,7 @@ class MainViewModel @Inject constructor(
     val description = "View Model description"
 
     fun printUser() {
-        userRepository.getName().subscribe({
+        userRepository.getUser().subscribe({
             Log.i("TAG", it.name)
         }, {
             Log.e("TAG", "Throwable : ", it)

@@ -1,5 +1,6 @@
 package com.jp.boilerplate.data
 
+import android.util.Log
 import com.jp.boilerplate.data.datasource.UserDataSource
 import com.jp.boilerplate.data.entity.User
 import com.jp.boilerplate.data.repository.UserRepository
@@ -12,16 +13,19 @@ class UserRepositoryImpl @Inject constructor(
     @AppModule.RemoteDataSource private val userRemoteDataSource: UserDataSource
 ) : UserRepository {
 
-    override fun getName(): Flowable<User> {
+    override fun getUser(): Flowable<User> {
         return userLocalDataSource.isCached()
             .flatMapPublisher {
+                Log.i("AB_${this.javaClass.simpleName}", "it : $it")
                 if (it) {
                     userLocalDataSource.getUser()
+                } else {
+                    userRemoteDataSource.getUser()
                 }
-                userRemoteDataSource.getUser()
             }
-            .flatMap { Flowable.just(it) }
-            .flatMap { userLocalDataSource.save(it).toSingle { it }.toFlowable() }
+            .flatMap {
+                userLocalDataSource.save(it).toSingle { it }.toFlowable()
+            }
     }
 
     override fun getAge(): Int {
