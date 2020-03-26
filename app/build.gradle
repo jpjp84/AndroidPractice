@@ -7,18 +7,23 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
+    compileOptions {
+        targetCompatibility = "8"
+        sourceCompatibility = "8"
+    }
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
-    compileSdkVersion 28
+    compileSdkVersion app.compileSdkVersion
     defaultConfig {
         applicationId "com.jp.boilerplate"
-        minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion app.minSdkVersion
+        targetSdkVersion app.targetSdkVersion
+        versionCode app.versionCode
+        versionName app.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -34,6 +39,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.multidex:multidex:$androidx.multidex"
     implementation "androidx.appcompat:appcompat:$androidx.appCompat"
     implementation "androidx.core:core-ktx:$androidx.core"
     implementation "androidx.constraintlayout:constraintlayout:$androidx.constraintLayout"
@@ -53,10 +59,12 @@ dependencies {
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.4.0"
 
     //ReactiveX
-    implementation "io.reactivex.rxjava3:rxkotlin:$rx.kotlin"
-    implementation "io.reactivex.rxjava3:rxandroid:$rx.android"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rx.kotlin"
+    implementation "io.reactivex.rxjava2:rxandroid:$rx.android"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
