@@ -13,26 +13,25 @@ class UserRepositoryImpl @Inject constructor(
     @AppModule.RemoteDataSource private val userRemoteDataSource: UserDataSource
 ) : UserRepository {
 
-    override fun getUser(): Flowable<User> {
+    private var user: User? = null
+
+    override fun getUser(forceUpdate: Boolean): Flowable<User> {
         return userLocalDataSource.isCached()
             .flatMapPublisher {
                 Log.i("AB_${this.javaClass.simpleName}", "it : $it")
-                if (it) {
-                    userLocalDataSource.getUser()
-                } else {
+                if (forceUpdate || !it) {
                     userRemoteDataSource.getUser()
+                } else {
+                    userLocalDataSource.getUser()
                 }
             }
             .flatMap {
+                user = it
                 userLocalDataSource.save(it).toSingle { it }.toFlowable()
             }
     }
 
-    override fun getAge(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun isAdult(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return user?.age!! > 19
     }
 }

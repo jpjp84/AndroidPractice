@@ -19,10 +19,13 @@ class MainActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = this
+        val binding =
+            DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+                .apply {
+                    viewModel = this@MainActivity.viewModel
+                    lifecycleOwner = this@MainActivity
+                }
 
-        viewModel.printUser()
+        viewModel.updateUser()
     }
 }
