@@ -1,6 +1,5 @@
 package com.jp.boilerplate.data
 
-import android.util.Log
 import com.jp.boilerplate.data.datasource.UserDataSource
 import com.jp.boilerplate.data.entity.User
 import com.jp.boilerplate.data.repository.UserRepository
@@ -18,7 +17,6 @@ class UserRepositoryImpl @Inject constructor(
     override fun getUser(forceUpdate: Boolean): Flowable<User> {
         return userLocalDataSource.isCached()
             .flatMapPublisher {
-                Log.i("AB_${this.javaClass.simpleName}", "it : $it")
                 if (forceUpdate || !it) {
                     userRemoteDataSource.getUser()
                 } else {
