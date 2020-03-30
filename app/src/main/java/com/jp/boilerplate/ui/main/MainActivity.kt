@@ -1,30 +1,18 @@
 package com.jp.boilerplate.ui.main
 
 import android.os.Bundle
-import androidx.activity.viewModels
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import com.jp.boilerplate.R
 import com.jp.boilerplate.databinding.ActivityMainBinding
-import dagger.android.support.DaggerAppCompatActivity
-import javax.inject.Inject
+import com.jp.boilerplate.ui.base.BaseActivity
 
-class MainActivity : DaggerAppCompatActivity() {
+class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    override fun getViewModelClass(): Class<MainViewModel> = MainViewModel::class.java
 
-    private val viewModel by viewModels<MainViewModel> { viewModelFactory }
+    override fun getViewLayoutRes() = R.layout.activity_main
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val binding =
-            DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-                .apply {
-                    viewModel = this@MainActivity.viewModel
-                    lifecycleOwner = this@MainActivity
-                }
 
         viewModel.updateUser()
     }
