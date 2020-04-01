@@ -1,16 +1,19 @@
-package com.jp.boilerplate.ui.base
+package com.jp.babyfood.ui.base
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.jp.boilerplate.BR
-import dagger.android.support.DaggerAppCompatActivity
+import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-abstract class BaseActivity<VM : ViewModel, VB : ViewDataBinding> : DaggerAppCompatActivity() {
+abstract class BaseFragment<VM : ViewModel, VB : ViewDataBinding> : DaggerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -26,14 +29,19 @@ abstract class BaseActivity<VM : ViewModel, VB : ViewDataBinding> : DaggerAppCom
 
     protected lateinit var viewBinding: VB
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
-        viewBinding = DataBindingUtil.setContentView(this, getViewLayoutRes())
+        viewBinding = DataBindingUtil.inflate(inflater, getViewLayoutRes(), container, false)
         viewBinding.apply {
             this.setVariable(BR.viewModel, viewModel)
-            viewBinding.lifecycleOwner = this@BaseActivity
+            viewBinding.lifecycleOwner = this@BaseFragment
             this.executePendingBindings()
         }
+
+        return viewBinding.root
     }
 }
