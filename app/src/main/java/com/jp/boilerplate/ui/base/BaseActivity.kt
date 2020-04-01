@@ -24,7 +24,7 @@ abstract class BaseActivity<VM : ViewModel, VB : ViewDataBinding> : DaggerAppCom
     @LayoutRes
     abstract fun getViewLayoutRes(): Int
 
-    private val viewBinding by lazy {
+    protected val viewBinding: VB by lazy {
         DataBindingUtil.setContentView<VB>(this, getViewLayoutRes())
     }
 
