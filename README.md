@@ -6,11 +6,16 @@
 - Kotlin
 - Dagger2
 - Retrofit, OkHttp
-- RxJava, RxKotlin
+- RxJava, RxKotlin(Rx2)
 
 ### Action
 - feature/*, master : unit test, lint, build action
 - push 'v*' tags : signed apk, create release and upload signed apk
+
+### Todo
+- [ ] Test코드 작성
+- [ ] Rx3 Tracking 하기
+- [ ] Sample Project 만들어 보기
 
 ### Concept Project
 - [Android Architecture Sample](https://github.com/android/architecture-samples/tree/dagger-android)
