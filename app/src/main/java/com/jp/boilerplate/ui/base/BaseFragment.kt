@@ -35,11 +35,13 @@ abstract class BaseFragment<VM : ViewModel, VB : ViewDataBinding> : DaggerFragme
         savedInstanceState: Bundle?
     ): View? {
 
-        viewBinding = DataBindingUtil.inflate(inflater, getViewLayoutRes(), container, false)
-        viewBinding.apply {
-            this.setVariable(BR.viewModel, viewModel)
-            viewBinding.lifecycleOwner = this@BaseFragment
-            this.executePendingBindings()
+        if (!::viewBinding.isInitialized) {
+            viewBinding = DataBindingUtil.inflate(inflater, getViewLayoutRes(), container, false)
+            viewBinding.apply {
+                this.setVariable(BR.viewModel, viewModel)
+                viewBinding.lifecycleOwner = this@BaseFragment
+                this.executePendingBindings()
+            }
         }
 
         return viewBinding.root
