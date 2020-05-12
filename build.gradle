@@ -52,4 +52,5 @@ ext {
             kotlin : '2.0.0',
             android: '2.0.0'
     ]
+    loggerVersion = '2.2.0'
 }
