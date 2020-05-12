@@ -31,6 +31,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    flavorDimensions "data"
+    productFlavors {
+        api {
+            dimension = "data"
+        }
+        mock {
+            dimension = "data"
+        }
+    }
     dataBinding {
         enabled = true
     }
@@ -49,6 +58,8 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:$androidx.fragmentKtx"
     implementation "androidx.activity:activity:$androidx.activityVersion"
     implementation "androidx.activity:activity-ktx:$androidx.activityKtx"
+
+    implementation "androidx.recyclerview:recyclerview:$androidx.recyclerview"
 
     // Dagger
     implementation "com.google.dagger:dagger:$daggerVersion"
