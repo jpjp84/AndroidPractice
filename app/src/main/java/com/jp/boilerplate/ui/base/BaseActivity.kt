@@ -24,13 +24,12 @@ abstract class BaseActivity<VM : ViewModel, VB : ViewDataBinding> : DaggerAppCom
     @LayoutRes
     abstract fun getViewLayoutRes(): Int
 
-    private val viewBinding by lazy {
-        DataBindingUtil.setContentView<VB>(this, getViewLayoutRes())
-    }
+    protected lateinit var viewBinding: VB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        viewBinding = DataBindingUtil.setContentView(this, getViewLayoutRes())
         viewBinding.apply {
             this.setVariable(BR.viewModel, viewModel)
             viewBinding.lifecycleOwner = this@BaseActivity
