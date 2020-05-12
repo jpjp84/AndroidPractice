@@ -2,6 +2,7 @@ package com.jp.boilerplate.data
 
 import com.jp.boilerplate.data.datasource.UserDataSource
 import com.jp.boilerplate.data.entity.User
+import com.jp.boilerplate.data.entity.Users
 import com.jp.boilerplate.data.repository.UserRepository
 import com.jp.boilerplate.di.module.AppModule
 import io.reactivex.Flowable
@@ -12,24 +13,20 @@ class UserRepositoryImpl @Inject constructor(
     @AppModule.RemoteDataSource private val userRemoteDataSource: UserDataSource
 ) : UserRepository {
 
-    private var user: User? = null
+    private var user: Users? = null
 
-    override fun getUser(forceUpdate: Boolean): Flowable<User> {
+    override fun getUser(forceUpdate: Boolean): Flowable<Users> {
         return userLocalDataSource.isCached()
             .flatMapPublisher {
                 if (forceUpdate || !it) {
-                    userRemoteDataSource.getUser()
+                    userRemoteDataSource.getUsers()
                 } else {
-                    userLocalDataSource.getUser()
+                    userLocalDataSource.getUsers()
                 }
             }
             .flatMap {
                 user = it
                 userLocalDataSource.save(it).toSingle { it }.toFlowable()
             }
-    }
-
-    override fun isAdult(): Boolean {
-        return user?.age!! > 19
     }
 }

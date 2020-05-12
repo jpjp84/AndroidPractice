@@ -43,7 +43,8 @@ ext {
             fragmentKtx     : '1.3.0-alpha02',
             activityVersion : '1.1.0',
             activityKtx     : '1.1.0',
-            multidex        : '2.0.1'
+            multidex        : '2.0.1',
+            recyclerview    : '1.1.0'
     ]
     daggerVersion = '2.23.2'
     retrofitVersion = '2.8.0'

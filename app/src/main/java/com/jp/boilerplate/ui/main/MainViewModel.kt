@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.jp.boilerplate.data.entity.User
+import com.jp.boilerplate.data.entity.Users
 import com.jp.boilerplate.data.repository.UserRepository
 import com.jp.boilerplate.ui.base.BaseViewModel
 import javax.inject.Inject
@@ -12,16 +13,15 @@ class MainViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : BaseViewModel() {
 
-    private val _user = MutableLiveData<User>()
-    val user: LiveData<User> = _user
+    private val _users = MutableLiveData<Users>()
+    val users: LiveData<Users> = _users
 
     fun updateUser() {
         addDisposable(
             userRepository.getUser(true).subscribe(
-                { _user.value = it },
+                { _users.value = it },
                 { Log.e("AB_TAG", "Throwable : ", it) }
             )
         )
     }
-
 }

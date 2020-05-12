@@ -1,9 +1,9 @@
 package com.jp.boilerplate.data.datasource
 
-import com.jp.boilerplate.data.entity.User
+import com.jp.boilerplate.data.entity.Users
 import io.reactivex.Flowable
 
-interface UserDataSource : BaseDataSource {
+interface UserDataSource : BaseDataSource<Users> {
 
-    fun getUser(): Flowable<User>
+    fun getUsers(): Flowable<Users>
 }
