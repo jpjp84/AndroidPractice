@@ -34,7 +34,7 @@ abstract class MainModule {
 internal class UserListModule {
 
     @Provides
-    fun provideUserListAdapter(viewModel: MainViewModel): UserListAdapter {
-        return UserListAdapter(viewModel)
+    fun provideUserListAdapter(viewModel: MainViewModel, activity: MainActivity): UserListAdapter {
+        return UserListAdapter(viewModel, activity)
     }
 }

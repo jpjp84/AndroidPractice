@@ -19,6 +19,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@{user.expand ? @drawable/bg_row_user : null}"
         android:padding="@dimen/default_padding">
 
         <TextView
@@ -27,6 +28,7 @@
             android:layout_height="wrap_content"
             android:text="@{user.name}"
             app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toTopOf="@id/user_age_text"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/expand_btn"
             app:layout_constraintTop_toTopOf="parent" />
@@ -35,9 +37,21 @@
             android:id="@+id/expand_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:padding="@dimen/padding_small"
+            app:layout_constraintBottom_toTopOf="@id/user_age_text"
             app:layout_constraintLeft_toRightOf="@id/user_id"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:toggleOnClick="@={user.expand}" />
+
+        <TextView
+            android:id="@+id/user_age_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{@string/age_unit(user.age)}"
+            android:visibility="@{user.expand ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_id" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

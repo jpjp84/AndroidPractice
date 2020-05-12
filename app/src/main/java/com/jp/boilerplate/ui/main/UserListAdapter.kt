@@ -2,13 +2,14 @@ package com.jp.boilerplate.ui.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.jp.boilerplate.data.entity.User
 import com.jp.boilerplate.databinding.RowUserBinding
 
-class UserListAdapter(val viewModel: MainViewModel) :
+class UserListAdapter(val viewModel: MainViewModel, private val lifecycleOwner: LifecycleOwner) :
     ListAdapter<User, RecyclerView.ViewHolder>(UserDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -16,15 +17,16 @@ class UserListAdapter(val viewModel: MainViewModel) :
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as UserViewHolder).bind(viewModel, getItem(position))
+        (holder as UserViewHolder).bind(viewModel, lifecycleOwner, getItem(position))
     }
 
     class UserViewHolder(private val binding: RowUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(viewModel: MainViewModel, item: User) {
+        fun bind(viewModel: MainViewModel, lifecycleOwner: LifecycleOwner, item: User) {
             binding.viewModel = viewModel
             binding.user = item
+            binding.expandBtn.setLifecycleOwner(lifecycleOwner)
         }
 
         companion object {
