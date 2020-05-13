@@ -1,6 +1,5 @@
 package com.jp.boilerplate.ui.main
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.jp.boilerplate.data.entity.Users
@@ -20,10 +19,9 @@ class MainViewModel @Inject constructor(
         addDisposable(
             userRepository.getUser(true).subscribe(
                 {
-                    Logger.i("$it")
                     _users.value = it
                 },
-                { Log.e("AB_TAG", "Throwable : ", it) }
+                { Logger.e("Update User Exception", it) }
             )
         )
     }
