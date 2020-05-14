@@ -29,8 +29,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
         setSupportActionBar(viewBinding.mainToolbar)
         setNavigation()
-
-        viewModel.updateUser()
     }
 
     override fun onSupportNavigateUp(): Boolean {

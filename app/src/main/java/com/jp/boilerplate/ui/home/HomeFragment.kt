@@ -2,8 +2,9 @@ package com.jp.boilerplate.ui.home
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.jp.babyfood.ui.base.BaseFragment
+import com.jp.boilerplate.ui.base.BaseFragment
 import com.jp.boilerplate.R
 import com.jp.boilerplate.data.entity.User
 import com.jp.boilerplate.databinding.FragmentHomeBinding
@@ -14,9 +15,6 @@ import javax.inject.Inject
 
 class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
 
-    @Inject
-    lateinit var userListAdapter: UserListAdapter
-
     override fun getViewModelClass(): Class<HomeViewModel> = HomeViewModel::class.java
 
     override fun getViewLayoutRes(): Int = R.layout.fragment_home
@@ -24,10 +22,11 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setObservers()
         setAdapter()
 
         viewModel.updateUser()
+
+        setObservers()
     }
 
     private fun setObservers() {
@@ -42,6 +41,6 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
     }
 
     private fun setAdapter() {
-        viewBinding.expandableUserList.adapter = userListAdapter
+        viewBinding.expandableUserList.adapter = UserListAdapter(viewModel, viewLifecycleOwner)
     }
 }
