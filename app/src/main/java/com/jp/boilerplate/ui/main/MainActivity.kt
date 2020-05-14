@@ -5,6 +5,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.jp.boilerplate.R
 import com.jp.boilerplate.databinding.ActivityMainBinding
 import com.jp.boilerplate.ui.base.BaseActivity
@@ -27,11 +28,16 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         super.onCreate(savedInstanceState)
 
         setSupportActionBar(viewBinding.mainToolbar)
+        setNavigation()
 
         viewModel.updateUser()
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    private fun setNavigation() {
+        setupActionBarWithNavController(navController, appBarConfiguration)
     }
 }
