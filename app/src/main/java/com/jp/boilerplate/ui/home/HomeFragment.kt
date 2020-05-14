@@ -36,7 +36,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
     }
 
     private fun openUserDetail(user: User) {
-        val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment()
+        val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(user)
         findNavController().navigate(action)
     }
 

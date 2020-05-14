@@ -18,7 +18,12 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.jp.boilerplate.ui.detail.DetailFragment"
-        android:label="User Detail" />
+        android:label="User Detail" >
+
+        <argument
+            android:name="user"
+            app:argType="com.jp.boilerplate.data.entity.User" />
+    </fragment>
 
     <argument
         android:name="userMessage"
