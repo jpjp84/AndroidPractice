@@ -13,7 +13,7 @@
 
         <variable
             name="viewModel"
-            type="com.jp.boilerplate.ui.main.MainViewModel" />
+            type="com.jp.boilerplate.ui.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

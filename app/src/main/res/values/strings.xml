@@ -2,4 +2,6 @@
     <string name="app_name">AndroidBoilerplate</string>
 
     <string name="age_unit">%d세 입니다.</string>
+
+    <string name="home_fragment_text">Home Fragment</string>
 </resources>

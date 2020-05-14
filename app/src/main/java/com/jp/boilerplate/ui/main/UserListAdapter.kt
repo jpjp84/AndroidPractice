@@ -8,8 +8,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.jp.boilerplate.data.entity.User
 import com.jp.boilerplate.databinding.RowUserBinding
+import com.jp.boilerplate.ui.home.HomeViewModel
 
-class UserListAdapter(val viewModel: MainViewModel, private val lifecycleOwner: LifecycleOwner) :
+class UserListAdapter(val viewModel: HomeViewModel, private val lifecycleOwner: LifecycleOwner) :
     ListAdapter<User, RecyclerView.ViewHolder>(UserDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -23,7 +24,7 @@ class UserListAdapter(val viewModel: MainViewModel, private val lifecycleOwner: 
     class UserViewHolder(private val binding: RowUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(viewModel: MainViewModel, lifecycleOwner: LifecycleOwner, item: User) {
+        fun bind(viewModel: HomeViewModel, lifecycleOwner: LifecycleOwner, item: User) {
             binding.viewModel = viewModel
             binding.user = item
             binding.expandBtn.setLifecycleOwner(lifecycleOwner)
