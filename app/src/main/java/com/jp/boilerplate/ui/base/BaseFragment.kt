@@ -1,4 +1,4 @@
-package com.jp.babyfood.ui.base
+package com.jp.boilerplate.ui.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

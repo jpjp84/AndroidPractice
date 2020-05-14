@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
 android {
     compileOptions {
         targetCompatibility = "8"
@@ -59,6 +61,8 @@ dependencies {
     implementation "androidx.activity:activity:$androidx.activityVersion"
     implementation "androidx.activity:activity-ktx:$androidx.activityKtx"
 
+    implementation "androidx.navigation:navigation-fragment-ktx:$androidx.navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$androidx.navigation"
     implementation "androidx.recyclerview:recyclerview:$androidx.recyclerview"
 
     // Dagger

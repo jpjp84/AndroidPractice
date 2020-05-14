@@ -2,9 +2,7 @@ package com.jp.boilerplate.di.component
 
 import android.content.Context
 import com.jp.boilerplate.AndroidBoilerplate
-import com.jp.boilerplate.di.module.AppModule
-import com.jp.boilerplate.di.module.DataModule
-import com.jp.boilerplate.di.module.MainModule
+import com.jp.boilerplate.di.module.*
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -17,7 +15,9 @@ import javax.inject.Singleton
         AppModule::class,
         AndroidSupportInjectionModule::class,
         DataModule::class,
-        MainModule::class
+        MainModule::class,
+        HomeModule::class,
+        DetailModule::class
     ]
 )
 interface AppComponent : AndroidInjector<AndroidBoilerplate> {

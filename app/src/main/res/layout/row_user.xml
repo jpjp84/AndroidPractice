@@ -13,13 +13,14 @@
 
         <variable
             name="viewModel"
-            type="com.jp.boilerplate.ui.main.MainViewModel" />
+            type="com.jp.boilerplate.ui.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@{user.expand ? @drawable/bg_row_user : null}"
+        android:onClick="@{(view) -> viewModel.openUserDetail(user)}"
         android:padding="@dimen/default_padding">
 
         <TextView
